@@ -1,36 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 
-const headerNav = [
-  {
-    id: 1,
-    title: 'intro',
-    link: '#intro',
-  },
-  {
-    id: 2,
-    title: 'skill',
-    link: '#skill',
-  },
-  {
-    id: 3,
-    title: 'site',
-    link: '#site',
-  },
-  {
-    id: 4,
-    title: 'portfolio',
-    link: '#port',
-  },
-  {
-    id: 5,
-    title: 'contact',
-    link: '#contact',
-  },
-]
 
 const Header = () => {
+  const navArray = useSelector((state) => state.navArray);
   const [show, setShow] = useState(false);
-  
+
   return (
     <header id="header" role="banner">
       <div className="header__inner">
@@ -40,8 +15,8 @@ const Header = () => {
         <nav className={"header__nav" + (show ? " show" : "")} role="navigation" aria-label="main-menu">
           <ul>
             {
-              headerNav.map((item) => {
-                return <li key={item.id}><a href={item.link}>{item.title}</a></li>
+              navArray.map((item, key) => {
+                return <li key={key}><a href={item.link}>{item.title}</a></li>
               })
             }
           </ul>
